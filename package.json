@@ -1,0 +1,35 @@
+{
+  "name": "react-svg-gradient",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davisml/react-svg-gradient"
+  },
+  "version": "1.0.0",
+  "description": "React component that generates a SVG linear gradient from CSS linear-gradient syntax",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/babel ./src/LinearGradient.jsx -o ./index.js",
+    "prepublish": "npm run build"
+  },
+  "author": "Mark Davis",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "react-component",
+    "svg",
+    "gradient"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.16.0",
+    "react": "^0.14.5"
+  },
+  "peerDependencies": {
+    "react": "^0.14.5"
+  },
+  "dependencies": {
+    "gradient-parser": "git+https://github.com/rafaelcaricio/gradient-parser.git"
+  }
+}
