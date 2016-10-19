@@ -84,6 +84,7 @@ const LinearGradient = (props) => {
 		const key = `color-stop-${ index }`
 		const offset = (index / (colorStops.length - 1)) * 100 + '%'
 		let stopColor = 'rgb(0,0,0)'
+		let stopOpacity = 1.0
 
 		switch (colorStop.type) {
 			case 'rgb': {
@@ -94,7 +95,8 @@ const LinearGradient = (props) => {
 
 			case 'rgba': {
 				const [r, g, b, a] = colorStop.value
-				stopColor = `rgba(${ r },${ g },${ b },${ a })`
+				stopColor = `rgb(${ r },${ g },${ b })`
+				stopOpacity = Number(a)
 				break
 			}
 
@@ -104,15 +106,23 @@ const LinearGradient = (props) => {
 			}
 
 			case 'literal': {
-				console.log(`Literal '${ colorStop.value }' is not supported`)
+				stopColor = colorStop.value
 				break
 			}
 			
 			default:
 				break
 		}
+
+		let stopProps = {
+			key, offset, stopColor
+		}
+
+		if (stopOpacity < 1.0) {
+			stopProps.stopOpacity = stopOpacity
+		}
 		
-		return <stop key={ key } offset={ offset } stopColor={ stopColor } />
+		return <stop {...stopProps} />
 	}
 
 	return <linearGradient id={ id } x1="0%" y1="0%" x2="0%" y2="100%">
