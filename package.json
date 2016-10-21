@@ -27,7 +27,7 @@
     "react": "^0.14.5"
   },
   "peerDependencies": {
-    "react": "^0.14.5"
+    "react": ">=0.13.2 || ^0.14 || ^15.0.0"
   },
   "dependencies": {
     "gradient-parser": "git+https://github.com/rafaelcaricio/gradient-parser.git"

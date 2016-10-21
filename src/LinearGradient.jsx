@@ -99,7 +99,7 @@ const LinearGradient = (props) => {
 				stopOpacity = Number(a)
 				break
 			}
-
+			
 			case 'hex': {
 				stopColor = `#${ colorStop.value }`
 				break

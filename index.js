@@ -109,6 +109,7 @@ var LinearGradient = function LinearGradient(props) {
 		var key = 'color-stop-' + index;
 		var offset = index / (colorStops.length - 1) * 100 + '%';
 		var stopColor = 'rgb(0,0,0)';
+		var stopOpacity = 1.0;
 
 		switch (colorStop.type) {
 			case 'rgb':
@@ -132,7 +133,8 @@ var LinearGradient = function LinearGradient(props) {
 					var _b = _colorStop$value2[2];
 					var a = _colorStop$value2[3];
 
-					stopColor = 'rgba(' + _r + ',' + _g + ',' + _b + ',' + a + ')';
+					stopColor = 'rgb(' + _r + ',' + _g + ',' + _b + ')';
+					stopOpacity = Number(a);
 					break;
 				}
 
@@ -144,7 +146,7 @@ var LinearGradient = function LinearGradient(props) {
 
 			case 'literal':
 				{
-					console.log('Literal \'' + colorStop.value + '\' is not supported');
+					stopColor = colorStop.value;
 					break;
 				}
 
@@ -152,7 +154,15 @@ var LinearGradient = function LinearGradient(props) {
 				break;
 		}
 
-		return _react2.default.createElement('stop', { key: key, offset: offset, stopColor: stopColor });
+		var stopProps = {
+			key: key, offset: offset, stopColor: stopColor
+		};
+
+		if (stopOpacity < 1.0) {
+			stopProps.stopOpacity = stopOpacity;
+		}
+
+		return _react2.default.createElement('stop', stopProps);
 	};
 
 	return _react2.default.createElement(
